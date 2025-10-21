@@ -34,14 +34,14 @@ func fire(queue Queue[float32], startTime time.Time) {
 }
 
 func main() {
-	period := time.Millisecond * time.Duration(10)
-	intervalSize := 1 * time.Millisecond
+	period := time.Second
+	intervalSize := time.Millisecond * 100
 
 	taq := timedAccessQueue.NewTimedAccessQueue(&queue.Float32Queue{}, period, intervalSize)
 
-	startTime := time.Now()
+	startTime := time.Now().Add(period)
 
-	taq.Run(startTime)
+	taq.SetStartTime(startTime)
 	go spin(taq, startTime, period)
 
 	for {

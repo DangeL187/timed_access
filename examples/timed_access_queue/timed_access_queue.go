@@ -3,7 +3,7 @@ package timedAccessQueue
 import (
 	"time"
 
-	"github.com/DangeL187/timed_access"
+	timedAccess "github.com/DangeL187/timed_access/timed_access"
 )
 
 type Queue[T any] interface {
@@ -15,7 +15,7 @@ type Queue[T any] interface {
 type TimedAccessQueue[T any, Q Queue[T]] struct {
 	queue Q
 
-	timedAccess.TimedAccess[T]
+	timedAccess.TimedAccess
 }
 
 func (t *TimedAccessQueue[T, Q]) Push(item T) {

@@ -1,29 +1,29 @@
-package timedAccess
+package timed_access
 
 import (
 	"time"
 )
 
-type TimedAccess[T any] struct {
+type TimedAccess struct {
 	intervalSize time.Duration
 	period       time.Duration
 
 	startTime time.Time
 }
 
-func (t *TimedAccess[T]) Run(startTime time.Time) {
+func (t *TimedAccess) SetStartTime(startTime time.Time) {
 	t.startTime = startTime
 }
 
-func (t *TimedAccess[T]) SetIntervalSize(intervalSize time.Duration) {
+func (t *TimedAccess) SetIntervalSize(intervalSize time.Duration) {
 	t.intervalSize = intervalSize
 }
 
-func (t *TimedAccess[T]) SetPeriod(period time.Duration) {
+func (t *TimedAccess) SetPeriod(period time.Duration) {
 	t.period = period
 }
 
-func (t *TimedAccess[T]) IsInSafeInterval() (bool, time.Duration) {
+func (t *TimedAccess) IsInSafeInterval() (bool, time.Duration) {
 	if t.period <= 0 || t.startTime.IsZero() {
 		return false, 0
 	}
