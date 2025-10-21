@@ -1,4 +1,4 @@
-package timed_access
+package timedAccess
 
 import (
 	"time"
